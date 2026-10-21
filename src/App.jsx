@@ -27,6 +27,27 @@ const CREDITS = [
   ['Squid', 'grammar'],
 ]
 
+// The standard triple lure team from the Builds chapter, as the party on the title page.
+const PARTY = [
+  [382, 'Kyogre', 'Carry', 'carry'],
+  [771, 'Pyukumuku', 'Boss killer', 'boss-killer'],
+  [216, 'Teddiursa', 'Runner', 'runner'],
+  [235, 'Smeargle', 'Tutor', 'tutor'],
+  [656, 'Froakie', 'Tutor', 'tutor'],
+  [710, 'Pumpkaboo', 'Waiter', 'waiter'],
+]
+
+// Animated Showdown sprites, drawn at k times their own pixel size so every Pokémon keeps its relative size.
+const SHOWDOWN = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/'
+function Mon({ id, name, k = 2, className = '' }) {
+  return (
+    <img
+      className={`mon ${className}`} src={`${SHOWDOWN}${id}.gif`} alt={name} style={{ '--k': k }}
+      onLoad={e => e.currentTarget.style.setProperty('--w', e.currentTarget.naturalWidth)}
+    />
+  )
+}
+
 const RESOURCES = [
   ['Sandstorm’s SearchDex', 'https://sandstormer.github.io/PokeRogue-Dex/'],
   ['PokeRogue wiki', 'https://wiki.pokerogue.net/start'],
@@ -78,16 +99,25 @@ export default function App() {
     return () => { watch.disconnect(); removeEventListener('scroll', read) }
   }, [])
 
+  // On phones the tabs scroll sideways; keep the current one in view.
+  useEffect(() => {
+    const tab = document.querySelector('.bar-tabs [aria-current]')
+    if (tab) tab.parentElement.scrollTo({ left: tab.offsetLeft - 16, behavior: 'smooth' })
+  }, [here.chapter])
+
   useGSAP(() => {
     const mm = gsap.matchMedia()
     mm.add('(prefers-reduced-motion: no-preference)', () => {
+      gsap.from('.hero-boss', { y: -60, opacity: 0, duration: 0.9, ease: 'back.out(1.6)', delay: 0.2 })
+      gsap.to('.hero-boss .mon', { y: -14, duration: 1.8, ease: 'sine.inOut', yoyo: true, repeat: -1 })
+      gsap.from('.party li', { y: 40, opacity: 0, duration: 0.6, ease: 'back.out(2)', delay: 0.5, stagger: 0.07 })
       gsap.from('.hero-line', { yPercent: 40, opacity: 0, duration: 1, ease: 'power3.out', stagger: 0.12 })
       gsap.from('.hero-foot > *', { y: 16, opacity: 0, duration: 0.8, ease: 'power2.out', delay: 0.4, stagger: 0.08 })
       gsap.utils.toArray('.contents li').forEach(li => {
         gsap.from(li, { y: 32, opacity: 0, duration: 0.7, ease: 'power3.out', scrollTrigger: { trigger: li, start: 'top 92%', once: true } })
       })
       gsap.utils.toArray('.opener').forEach(el => {
-        gsap.from(el.querySelectorAll('.opener-title, .opener-lead, .opener-facts'), {
+        gsap.from(el.querySelectorAll('.opener-title, .opener .mon, .opener-lead, .opener-facts'), {
           y: 28, opacity: 0, duration: 0.8, ease: 'power3.out', stagger: 0.08,
           scrollTrigger: { trigger: el, start: 'top 80%', once: true },
         })
@@ -97,23 +127,44 @@ export default function App() {
   }, { scope: root })
 
   const field = here.chapter?.dataset.field ?? 'blue'
-  const chapterTitle = here.chapter?.dataset.title
 
   return (
     <div ref={root}>
       <header className="bar" data-on={field}>
         <a className="bar-mark" href="#top">Endless Guide</a>
-        {chapterTitle && <a className="bar-here" href={`#${here.chapter.id}`}>{chapterTitle}</a>}
+        <nav className="bar-tabs" aria-label="Chapters">
+          {chapters.map(c => (
+            <a key={c.id} href={`#${c.id}`} aria-current={here.chapter?.id === c.id ? 'location' : undefined}>{c.title}</a>
+          ))}
+        </nav>
         <button type="button" className="bar-search" onClick={() => setSearchOpen(true)}>Search <kbd>/</kbd></button>
       </header>
 
       <main>
         <section className="hero field-blue" id="top" data-field="blue">
-          <h1>
-            <span className="hero-line hero-pale">Endless,</span>
-            <span className="hero-line">to 5850.</span>
-          </h1>
+          <div className="hero-top">
+            <h1>
+              <span className="hero-line hero-pale">Endless,</span>
+              <span className="hero-line">to 5850.</span>
+            </h1>
+            <figure className="hero-boss">
+              <Mon id={890} name="Eternatus" k={3.4} />
+              <figcaption>Eternatus, every 250 waves</figcaption>
+            </figure>
+          </div>
           <div className="hero-foot">
+            <nav className="party" aria-label="A standard Endless team">
+              <ul>
+              {PARTY.map(([id, name, role, to]) => (
+                <li key={id}>
+                  <a href={`#${to}`}>
+                    <span className="party-mon"><Mon id={id} name="" k={2} /></span>
+                    <strong>{name}</strong> {role}
+                  </a>
+                </li>
+              ))}
+              </ul>
+            </nav>
             <p>The PokeRogue community’s Endless guide, by Monkee, Lululalu_a and the top Endless players on Discord. Rebuilt as a website so you can find what you need between waves.</p>
             <div className="hero-actions">
               <a className="button" href="#contents">Start reading</a>
@@ -127,7 +178,7 @@ export default function App() {
             {chapters.map(c => (
               <li key={c.id}>
                 <a href={`#${c.id}`}>
-                  <span className="contents-name">{c.title}</span>
+                  <span className="contents-name">{c.title}<Mon id={c.mon[0]} name="" k={1.5} /></span>
                   <span className="contents-fact">{c.sections.filter(s => s.depth === 2).length} parts</span>
                 </a>
               </li>
@@ -161,7 +212,7 @@ export default function App() {
           </a>
           <p className="credits-tile credits-mark" aria-hidden="true">Endless</p>
           <p className="credits-tile credits-legal">
-            A fan site, not affiliated with PokeRogue or Pokémon. Pokémon sprites from PokeAPI; token icons from pokerogue-assets (CC BY-NC-SA 4.0);
+            A fan site, not affiliated with PokeRogue or Pokémon. Pokémon sprites from PokeAPI, animated ones from Pokémon Showdown; token icons from pokerogue-assets (CC BY-NC-SA 4.0);
             screenshots from the guide. Site by <a href="https://github.com/zi-cong-tan">Zi</a>.
           </p>
         </section>
@@ -177,7 +228,10 @@ function Chapter({ chapter: c, active }) {
   return (
     <section className={`chapter field-${c.field}`} id={c.id} data-field={c.field} data-title={c.title} aria-labelledby={`${c.id}-title`}>
       <div className="opener">
-        <h2 className="opener-title" id={`${c.id}-title`}>{c.title}</h2>
+        <div className="opener-head">
+          <h2 className="opener-title" id={`${c.id}-title`}>{c.title}</h2>
+          <Mon id={c.mon[0]} name={c.mon[1]} k={3} />
+        </div>
         <p className="opener-lead">{c.lead}</p>
         <ol className="opener-facts">
           {parts.map(s => <li key={s.id}><a href={`#${s.id}`}>{s.title}</a></li>)}

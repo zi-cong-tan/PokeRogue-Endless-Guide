@@ -11,13 +11,13 @@ import mistakes from './content/mistakes.md?raw'
 
 // Each chapter is one colour field. Order follows the original guide's tabs.
 const CHAPTERS = [
-  { id: 'mechanics', title: 'Mechanics', lead: 'How Endless works: the end, tokens, and what changes from Classic.', field: 'pink', md: works },
-  { id: 'fusion', title: 'Fusion', lead: 'DNA Splicers, fuse tutoring and Spliced Endless.', field: 'sand', md: fusion },
-  { id: 'the-team', title: 'The team', lead: 'The six roles: carry, waiter, runner, supports, tutor and boss killer.', field: 'sage', md: team },
-  { id: 'builds', title: 'Builds', lead: 'Complete teams, from the standard triple lure to Floedinja.', field: 'peach', md: builds },
-  { id: 'the-run', title: 'The run', lead: 'Building between waves 1000 and 2000, then running and catching shinies.', field: 'blue', md: run },
-  { id: 'run-enders', title: 'Run enders', lead: 'Neutralizing Gas, the Paradoxes, Eternatus fusions and shiny obstacles.', field: 'ink', md: enders },
-  { id: 'mistakes', title: 'Mistakes', lead: 'Noob traps: Well-Baked Body, Candy Jars, wasted slots and the wrong Tera.', field: 'sand', md: mistakes },
+  { id: 'mechanics', mon: [10190, 'Eternamax Eternatus'], title: 'Mechanics', lead: 'How Endless works: the end, tokens, and what changes from Classic.', field: 'pink', md: works },
+  { id: 'fusion', mon: [10022, 'Black Kyurem'], title: 'Fusion', lead: 'DNA Splicers, fuse tutoring and Spliced Endless.', field: 'sand', md: fusion },
+  { id: 'the-team', mon: [10077, 'Primal Kyogre'], title: 'The team', lead: 'The six roles: carry, waiter, runner, supports, tutor and boss killer.', field: 'sage', md: team },
+  { id: 'builds', mon: [10061, 'Eternal Floette'], title: 'Builds', lead: 'Complete teams, from the standard triple lure to Floedinja.', field: 'peach', md: builds },
+  { id: 'the-run', mon: [216, 'Teddiursa'], title: 'The run', lead: 'Building between waves 1000 and 2000, then running and catching shinies.', field: 'blue', md: run },
+  { id: 'run-enders', mon: [10167, 'Galarian Weezing'], title: 'Run enders', lead: 'Neutralizing Gas, the Paradoxes, Eternatus fusions and shiny obstacles.', field: 'ink', md: enders },
+  { id: 'mistakes', mon: [927, 'Dachsbun'], title: 'Mistakes', lead: 'Noob traps: Well-Baked Body, Candy Jars, wasted slots and the wrong Tera.', field: 'sand', md: mistakes },
 ]
 
 const BASE = import.meta.env.BASE_URL
