@@ -4,7 +4,7 @@
 
 **Live:** https://zi-cong-tan.github.io/PokeRogue-Endless-Guide/
 
-![The title page: Eternatus as the boss and a standard Endless team as the party](docs/screenshot.png)
+![The title page: Eternatus as the boss and a standard Endless team as the party](docs/title-page.png)
 
 ## Where the guide comes from
 
