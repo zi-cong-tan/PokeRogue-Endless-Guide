@@ -1,0 +1,122 @@
+{
+ "boss-killer-dot.png": [
+  602,
+  76
+ ],
+ "boss-killer-pyukumuku.png": [
+  602,
+  71
+ ],
+ "build-half-boss-killer-support.png": [
+  602,
+  140
+ ],
+ "build-half-waiter-runner.png": [
+  602,
+  139
+ ],
+ "doubles-5024.png": [
+  602,
+  339
+ ],
+ "eternatus-soak.png": [
+  602,
+  336
+ ],
+ "finished-build-976.png": [
+  602,
+  339
+ ],
+ "fuse-dark-void-958.png": [
+  602,
+  339
+ ],
+ "fuse-dark-void-968.png": [
+  602,
+  339
+ ],
+ "fuse-dark-void-976.png": [
+  602,
+  339
+ ],
+ "good-starting-team.png": [
+  120,
+  372
+ ],
+ "metal-burst-farigiraf.png": [
+  602,
+  68
+ ],
+ "metal-burst-team-1196.png": [
+  602,
+  339
+ ],
+ "metal-burst-wobbuffet.png": [
+  602,
+  71
+ ],
+ "neut-gas-runner.png": [
+  602,
+  68
+ ],
+ "neut-gas-waiter.png": [
+  602,
+  79
+ ],
+ "pokerus.png": [
+  376,
+  63
+ ],
+ "runaway-tier-list.png": [
+  198,
+  210
+ ],
+ "runner.png": [
+  602,
+  75
+ ],
+ "searchdex.png": [
+  602,
+  157
+ ],
+ "support-mold-breaker.png": [
+  602,
+  72
+ ],
+ "support-psychic-surge.png": [
+  602,
+  72
+ ],
+ "the-end-5850.png": [
+  602,
+  337
+ ],
+ "token-bar.png": [
+  328,
+  32
+ ],
+ "token-damage.png": [
+  353,
+  120
+ ],
+ "token-protection.png": [
+  463,
+  103
+ ],
+ "victory-5850-a.png": [
+  602,
+  339
+ ],
+ "victory-5850-b.png": [
+  602,
+  339
+ ],
+ "waiter.png": [
+  602,
+  79
+ ],
+ "well-baked-body.png": [
+  602,
+  65
+ ]
+}
