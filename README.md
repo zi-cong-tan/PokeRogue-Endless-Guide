@@ -41,6 +41,6 @@ React, Vite and GSAP, set in Hanken Grotesk. The token maths is in [`src/tokens.
 
 ## Licence
 
-The site's code is MIT (see `LICENSE`). The guide's text and screenshots belong to their authors and are used with credit. Pokémon sprites come from PokeAPI; token icons from `pagefaultgames/pokerogue-assets` (CC BY-NC-SA 4.0). Pokémon and PokeRogue belong to their owners; this is a fan project.
+The site's code is MIT (see `LICENSE`). The guide's text and screenshots belong to their authors and are used with credit. Pokémon sprites come from PokeAPI (animated ones from Pokémon Showdown); token icons from `pagefaultgames/pokerogue-assets` (CC BY-NC-SA 4.0). Pokémon and PokeRogue belong to their owners; this is a fan project.
 
 Also by Zi: the [PokeRogue Classic Guide](https://zi-cong-tan.github.io/PokeRogue-Classic-Guide/).
