@@ -4,7 +4,7 @@
 
 **Live:** https://zi-cong-tan.github.io/PokeRogue-Endless-Guide/
 
-![The token calculator on the Mechanics chapter](docs/screenshot.png)
+![The title page: Eternatus as the boss and a standard Endless team as the party](docs/screenshot.png)
 
 ## Where the guide comes from
 
